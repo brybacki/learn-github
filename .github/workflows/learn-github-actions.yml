@@ -6,5 +6,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ls .
-      - run: cat README.md | wc -l
+      - name: Do some stuff
+        run: ls . ; mkdir output
+      - name: Do some more stuff
+        run: cat README.md | wc -l > output/output.txt
+      - name: Archive logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: more-stuff-report
+          path: output/
+      
